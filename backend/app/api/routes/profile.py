@@ -13,11 +13,13 @@ router = APIRouter(prefix="/profile", tags=["profile"])
 
 @router.get("", response_model=ProfileResponse)
 def get_profile(user: User = Depends(get_current_user)):
+    """Get current user profile"""
     return user
 
 
 @router.get("/settings", response_model=UserSettingsRead)
-def get_settings(db: Session = Depends(get_db), user: User = Depends(get_current_user)):
+def get_settings(user: User = Depends(get_current_user), db: Session = Depends(get_db)):
+    """Get user settings"""
     settings = db.query(UserSettings).filter(UserSettings.user_id == user.id).first()
     if not settings:
         settings = UserSettings(user_id=user.id)
@@ -31,7 +33,12 @@ def get_settings(db: Session = Depends(get_db), user: User = Depends(get_current
 
 
 @router.put("/settings", response_model=UserSettingsRead)
-def update_settings(payload: UserSettingsUpdate, db: Session = Depends(get_db), user: User = Depends(get_current_user)):
+def update_settings(
+    payload: UserSettingsUpdate,
+    user: User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    """Update user settings"""
     settings = db.query(UserSettings).filter(UserSettings.user_id == user.id).first()
     if not settings:
         settings = UserSettings(user_id=user.id)

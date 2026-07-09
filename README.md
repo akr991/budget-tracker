@@ -6,7 +6,8 @@ Full-stack cloud application for personal budget tracking with region-separated 
 
 - Backend: FastAPI, SQLAlchemy, JWT auth, PostgreSQL-ready
 - Frontend: React + Vite, mobile-first responsive UI, Chart.js
-- Deployment: Dockerized, Railway-ready
+- Mobile: React + Capacitor, native Android APK
+- Deployment: Dockerized, Railway-ready, Google Play ready
 
 ## Core Sections
 
@@ -22,15 +23,23 @@ Each region supports:
 - Investment tracking (profit/loss and growth trends)
 - Gold tracking (grams/sovereigns + optional live price fetch)
 
+## Available Platforms
+
+- 🌐 **Web**: React web app (localhost:5173)
+- 📱 **Android**: Native APK via Capacitor
+- ☁️ **Cloud**: Deployed on Railway
+
 ## Project Structure
 
 - backend/: FastAPI server, models, routers, services
-- frontend/: React mobile-first dashboard
+- frontend/: React mobile-first dashboard + Capacitor Android project
 - DATABASE_SCHEMA.md: relational database design
 - API_DOCS.md: endpoint reference
 - docker-compose.yml: local full-stack startup
+- ANDROID_BUILD_GUIDE.md: APK build instructions
+- MOBILE_APP_SETUP.md: Mobile deployment guide
 
-## Backend Setup
+## Quick Start
 
 1. Copy backend/.env.example to backend/.env and set values:
    - SECRET_KEY
@@ -67,6 +76,29 @@ npm run dev
 
 3. Open app:
 - http://localhost:5173
+
+## Android APK Setup
+
+Build a native Android application:
+
+```bash
+cd frontend
+
+# Update API URL for your deployed backend
+# Edit: .env.production
+# VITE_API_URL=https://your-backend-url.railway.app/api
+
+# Build APK (requires Java and Android SDK installed)
+./build-apk.bat
+```
+
+**Before building**, see:
+- [ANDROID_BUILD_GUIDE.md](ANDROID_BUILD_GUIDE.md) - Complete build instructions
+- [MOBILE_APP_SETUP.md](MOBILE_APP_SETUP.md) - Backend configuration for mobile
+
+Output APK location:
+- Debug: `frontend/android/app/build/outputs/apk/debug/app-debug.apk`
+- Release: `frontend/android/app/build/outputs/apk/release/app-release.apk`
 
 ## Docker Compose (Local)
 

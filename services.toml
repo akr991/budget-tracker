@@ -1,0 +1,7 @@
+[backend]
+dockerfile = "backend/Dockerfile"
+buildCommand = "echo Building backend..."
+
+[frontend]
+dockerfile = "frontend/Dockerfile"
+buildCommand = "echo Building frontend..."
