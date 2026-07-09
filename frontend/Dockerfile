@@ -2,7 +2,7 @@ FROM node:20-alpine AS build
 WORKDIR /app
 
 # Copy all frontend files
-COPY frontend/ .
+COPY . .
 
 # Install dependencies
 RUN npm install
