@@ -1,10 +1,13 @@
 FROM node:20-alpine AS build
 WORKDIR /app
 
-COPY package.json package-lock.json* ./
+COPY frontend/package.json frontend/package-lock.json* ./
 RUN npm install
 
-COPY . .
+COPY frontend/src ./src
+COPY frontend/index.html ./
+COPY frontend/vite.config.js ./
+COPY frontend/public ./public
 
 # Use build-time API URL (will be replaced by production URL in runtime)
 ARG VITE_API_URL=http://localhost:8000/api
