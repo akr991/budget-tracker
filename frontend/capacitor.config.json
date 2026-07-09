@@ -1,0 +1,13 @@
+{
+  "appId": "com.budgettracker.app",
+  "appName": "BudgetTracker",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https"
+  },
+  "plugins": {
+    "CapacitorHttp": {
+      "enabled": true
+    }
+  }
+}
